@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>tweet beat</title>
+</head>
+<body>
+	<h1>tweet beat</h1>
+	<div id="tweet"></div>
+</body>
+<script type="text/javascript">
+	var ws = new WebSocket('ws://localhost:8081');
+	ws.onmessage = function (event) {
+		console.log(event.data.substring(14));
+		document.getElementById('tweet').innerHTML = event.data.substring(14);
+	};
+</script>
+</html>
