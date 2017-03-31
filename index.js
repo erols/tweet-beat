@@ -3,7 +3,8 @@ const http = require('http');
 const url = require('url');
 const WebSocket = require('ws');
 var Twitter = require('twitter');
- 
+
+// replace with your own valid keys. These are not valid anymore
 var client = new Twitter({
   consumer_key: 'nHLr7OuZjiTIgXSmw0XClLxGz',
   consumer_secret: 'c6ODVAEYEfaqJsJipBetMdtbbBEPSHp9U3jnpqz52t57hFUgLo',
