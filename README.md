@@ -1,3 +1,3 @@
 # tweet-beat
 
-## Twitter from the browser 
+## Tweet your beat! 
