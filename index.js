@@ -6,8 +6,8 @@ var Twitter = require('twitter');
 
 // replace with your own valid keys. These are not valid anymore
 var client = new Twitter({
-  consumer_key: 'nHLr7OuZjiTIgXSmw0XClLxGz',
-  consumer_secret: 'c6ODVAEYEfaqJsJipBetMdtbbBEPSHp9U3jnpqz52t57hFUgLo',
+  consumer_key: 'himWvvF8H5Cj9igkvsRoZKqil',
+  consumer_secret: '4eubxtfYtLzpTRSCUzxIiyF96bjb3wTxJrjCMR6n8a4ssZ51J7',
   access_token_key: '847758088610484224-EbwFm1ndzkKWFUNkSNgOwQDKrETT09D',
   access_token_secret: 'uP7cIiSfab38V7HwHEbSm17mcKDODlbHuvL4SyrL68lDU'
 });
