@@ -19,8 +19,70 @@ function addTweet(tweet) {
 
 $.getJSON('http://hyf-tweet.ddns.net')
     .then(tweets => {
-        tweets.forEach(tweet => {
+        tweets.forEach( (tweet, i) => {
             console.log(tweet.text);
             addTweet(tweet.text);
+            if (i === 0) { var parsed = parseTextToAudioParams(tweets[0].text);
+            playNotes(parsed, note_index, audioCtx) 
+        };
         })
+
     });
+
+
+    var A = 65, B = 122, C = 100, D = 1000, E = 110, F = 1760;
+//var ar_A = 0, ar_B = 65535;
+
+var synthTypes = {
+ "sine": true,
+ "square": true,
+ "sawtooth": true,
+ "triangle": true
+};
+
+function parseTextToAudioParams(tweetText) {
+
+ function computeValues(tweetChar, synth) {
+   let pitch, duration;
+   let X = tweetChar.charCodeAt(0);
+   // if (tweetChar != " ") {
+   //   X = (X-ar_A)/(ar_B-ar_A) * (B-A) + A;
+   // }
+
+   if (tweetChar >= "A" && tweetChar <= "z") {
+     duration = (X-A)/(B-A) * (D-C) + C;
+     pitch = (X-A)/(B-A) * (F-E) + E;
+   } else {
+     duration = Math.abs((X-A)/(B-A) * (D-C) + C);
+     pitch = 0;
+   }
+   return { "pitch": pitch, "duration": duration, "originalCharacter": tweetChar, "charCode": X,
+           "synthType": synth};
+ }
+
+ var audioParams = {
+   notes : []
+   //synthType: "sine"
+ }
+
+ let synth = "sine";
+ var i = 0;
+ while (i < tweetText.length) {
+
+   if (tweetText[i] == "#") {
+     let hashTag = tweetText.slice(i+1, tweetText.indexOf(" ", i));
+     if (synthTypes[hashTag]) {
+       synth = hashTag;
+     }
+     i += hashTag.length + 1;
+     continue;
+   }
+
+   let values = computeValues(tweetText[i], synth);
+   audioParams.notes.push(values)
+
+   i++;
+ }
+
+ return audioParams;
+}
