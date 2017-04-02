@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
 	<title>tweet beat</title>
 </head>
+
 <body>
-	<h1>tweet beat</h1>
-	<h3>send a tweet to @tweet_beat99</h3>
-	<div id="tweet"></div>
-</body>
-<script type="text/javascript">
-	var ws = new WebSocket('ws://localhost:8081');
-	ws.onmessage = function (event) {
-		console.log(event.data.substring(14));
-		document.getElementById('tweet').innerHTML = event.data.substring(14);
-		playNotes(event.data, note_index, audioCtx)
-	}
-</script>
+
+
+
+
+	<nav class="navbar navbar-primary navbar-inverse col-md-8 col-md-offset-2">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">
+					<div style="display: inline-block">
+						<img alt="Brand" src="https://img.clipartfest.com/3ca714319861d6d0f53f9b7b4f5971fc_13-twitter-logo-vector-png-clipart-twitter-logo_518-518.png"
+						 width="20" height="20"> Tweet Beat
+					</div>
+				</a>
+			</div>
+		</div>
+	</nav>
+	<ul id="tweetList" class="list-group col-md-8 col-md-offset-2"></ul>
+<script type="text/javascript" src="./jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="./js/index.js"></script>
 <script src="audio.js" type="text/javascript"></script>
+</body>
 </html>
