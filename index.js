@@ -6,12 +6,14 @@ var Twitter = require('twitter');
 
 // replace with valid keys. I will supply on the day. These are not valid anymore
 var client = new Twitter({
-  consumer_key: 'nHLr7OuZjiTIgXSmw0XClLxGz',
-  consumer_secret: 'c6ODVAEYEfaqJsJipBetMdtbbBEPSHp9U3jnpqz52t57hFUgLo',
-  access_token_key: '847758088610484224-EbwFm1ndzkKWFUNkSNgOwQDKrETT09D',
-  access_token_secret: 'uP7cIiSfab38V7HwHEbSm17mcKDODlbHuvL4SyrL68lDU'
+  consumer_key: '	5nrHSgmHbRdrJ5iG1MJodFrLb',
+  consumer_secret: 'Ai8Jor9FCySFdnWnVpv6NxQRjORicaJLshtk8tKwlMAsGIZJ3I',
+  access_token_key: '50592557-t0x3wy6GetznAoYY7ak7EYqaZ8kapjIW6BAdwB86j',
+  access_token_secret: 'l3tSMfKRSH8PbbbxZpoI5Hy2DoVP2M3iPeWTUz66rUyJ6'
 });
  
+console.log('after new Twitter');
+
 var params = {track: '@tweet_beat99'};
 client.stream('statuses/filter', params, function(stream) {
   stream.on('data', function (data) {
