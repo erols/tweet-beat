@@ -28,7 +28,7 @@ app.use(express.static('public'))
 var server = http.createServer(function (request, response) {
   console.log("request!");
   response.writeHead(200, {"Content-Type": "application/json"});
-  client.get('statuses/mentions_timeline.json', {}).then(function (tweet) { response.end(JSON.stringify(tweet))  }).catch( function (error) { response.end("ERROR" + error); console.log(error) } );
+  client.get('statuses/mentions_timeline.json', {count: 1}).then(function (tweet) { response.end(JSON.stringify(tweet))  }).catch( function (error) { response.end("ERROR" + error); console.log(error) } );
 });
 
 
