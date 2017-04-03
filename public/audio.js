@@ -48,5 +48,3 @@ function playNotes(notes, index, ctx) {
 	note_index = note_index + 1;
 	setTimeout(function () {playNotes(notes, note_index, ctx)}, (notes.notes[index].duration));
 }
-
-//playNotes(test_notes, note_index, audioCtx);
