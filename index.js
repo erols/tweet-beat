@@ -5,10 +5,15 @@ const http = require('http');
 const url = require('url');
 const WebSocket = require('ws');
 const Twitter = require('twitter');
-const conf = require('./config.json');
+// const conf = require('./config.json');
 
 // replace with valid keys. I will supply on the day. These are not valid anymore
-let client = new Twitter(conf);
+let client = new Twitter({
+  "consumer_key": process.env.CONSUMER_KEY,
+  "consumer_secret": process.env.CONSUMER_SECRET,
+  "access_token_key": process.env.ACCESS_TOKEN_KEY,
+  "access_token_secret": process.env.ACCESS_TOKEN_SECRET
+});
 
 let params = {track: '@tweet_beat99'};
 client.stream('statuses/filter', params, function(stream) {
