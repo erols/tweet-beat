@@ -17,20 +17,16 @@ function addTweet(tweet) {
     tweetList.append(li);
 }
 
-$.getJSON('http://hyf-tweet.ddns.net')
-    .then(tweets => {
-        tweets.forEach( (tweet, i) => {
-            console.log(tweet.text);
-            addTweet(tweet.text);
-            if (i === 0) { var parsed = parseTextToAudioParams(tweets[0].text);
-            playNotes(parsed, note_index, audioCtx) 
-        };
-        })
-
-    });
+var ws = new WebSocket('ws://localhost:8081');
+ws.onmessage = function (event) {
+    console.log(event.data);
+    addTweet(event.data);
+    var parsed = parseTextToAudioParams(event.data);
+    playNotes(parsed, note_index, audioCtx);
+};
 
 
-    var A = 65, B = 122, C = 100, D = 1000, E = 110, F = 1760;
+var A = 65, B = 122, C = 100, D = 1000, E = 110, F = 1760;
 //var ar_A = 0, ar_B = 65535;
 
 var synthTypes = {
@@ -43,6 +39,7 @@ var synthTypes = {
 function parseTextToAudioParams(tweetText) {
 
  function computeValues(tweetChar, synth) {
+    console.log(synth);
    let pitch, duration;
    let X = tweetChar.charCodeAt(0);
    // if (tweetChar != " ") {
@@ -56,8 +53,7 @@ function parseTextToAudioParams(tweetText) {
      duration = Math.abs((X-A)/(B-A) * (D-C) + C);
      pitch = 0;
    }
-   return { "pitch": pitch, "duration": duration, "originalCharacter": tweetChar, "charCode": X,
-           "synthType": synth};
+   return { "pitch": pitch, "duration": duration, "originalCharacter": tweetChar, "charCode": X, "synthType": synth};
  }
 
  var audioParams = {
@@ -77,7 +73,6 @@ function parseTextToAudioParams(tweetText) {
      i += hashTag.length + 1;
      continue;
    }
-
    let values = computeValues(tweetText[i], synth);
    audioParams.notes.push(values)
 
